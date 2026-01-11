@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Students – Learn, Build, Grow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #4A6FA5;
+            --secondary-blue: #6B8CBC;
+            --accent-purple: #9B5DE5;
+            --light-purple: #C77DFF;
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, #4A6FA5, #9B5DE5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-purple);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Featured Sections */
+        .featured-sections {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-blue);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-purple);
+            border-radius: 2px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .featured-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Page Sections */
+        .page-section {
+            padding: 4rem 0;
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Cards Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Notes Page */
+        .notes-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .note-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .note-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .note-item p {
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .download-btn {
+            background-color: var(--light-bg);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        /* Projects Page */
+        .project-level {
+            margin-bottom: 3rem;
+        }
+
+        .project-level h3 {
+            color: var(--accent-purple);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .project-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background-color: var(--light-bg);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .flow-diagram {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            font-family: monospace;
+        }
+
+        /* Career Guide */
+        .career-path {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .career-path h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .roadmap-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-purple);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--accent-purple);
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .ai-doubts {
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .ai-doubts h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .featured-grid, .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .page-section {
+                padding: 2.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>AI for Students</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="tools">Study Tools</a></li>
+                    <li><a href="#" class="nav-link" data-page="notes">Notes</a></li>
+                    <li><a href="#" class="nav-link" data-page="projects">AI Projects</a></li>
+                    <li><a href="#" class="nav-link" data-page="career">Career Guide</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <h1>AI for Students – Learn, Build, Grow</h1>
+                <p>Your comprehensive guide to understanding, applying, and mastering Artificial Intelligence. Designed for students of all levels, from complete beginners to advanced learners.</p>
+                <a href="#tools" class="cta-button">Explore AI Tools</a>
+            </div>
+        </div>
+
+        <!-- Featured Sections -->
+        <div class="container">
+            <div class="featured-sections">
+                <div class="section-title">
+                    <h2>Explore AI Resources</h2>
+                </div>
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <div class="featured-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Study Tools</h3>
+                        <p>AI-powered tools to enhance your learning experience and productivity.</p>
+                        <a href="#" class="btn" data-page="tools">Explore Tools</a>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Notes</h3>
+                        <p>Well-organized AI concepts explained in simple, student-friendly language.</p>
+                        <a href="#" class="btn" data-page="notes">Read Notes</a>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>AI Projects</h3>
+                        <p>Hands-on projects from beginner to advanced level with detailed guides.</p>
+                        <a href="#" class="btn" data-page="projects">View Projects</a>
+                    </div>
+                    <div class="featured-card">
+                        <div class="featured-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Career Guide</h3>
+                        <p>Plan your AI career path with roadmaps, skills, and opportunities.</p>
+                        <a href="#" class="btn" data-page="career">Explore Careers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Tools Page -->
+    <section id="tools" class="page-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Study Tools</h2>
+                <p>Enhance your learning with these AI-powered tools</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>AI Chatbot Assistant</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Get instant answers to your study questions, explanations of complex topics, and personalized learning guidance.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Note Summarizer</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Upload your lengthy notes and get concise summaries with key points highlighted for efficient revision.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>AI Translator</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Translate study materials between languages while maintaining technical accuracy and context.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Coding Assistant</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Get help with programming assignments, debug code, and learn best practices for AI development.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notes Page -->
+    <section id="notes" class="page-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Study Notes</h2>
+                <p>Well-organized topics for effective learning</p>
+            </div>
+            <div class="notes-list">
+                <div class="note-item">
+                    <div>
+                        <h3>What is Artificial Intelligence?</h3>
+                        <p>Introduction to AI, its history, types, and real-world applications.</p>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+                <div class="note-item">
+                    <div>
+                        <h3>Machine Learning Fundamentals</h3>
+                        <p>Supervised, unsupervised, and reinforcement learning with examples.</p>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+                <div class="note-item">
+                    <div>
+                        <h3>Deep Learning & Neural Networks</h3>
+                        <p>Understanding neural networks, CNN, RNN, and their architectures.</p>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+                <div class="note-item">
+                    <div>
+                        <h3>Natural Language Processing (NLP)</h3>
+                        <p>Text processing, sentiment analysis, language models, and transformers.</p>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+                <div class="note-item">
+                    <div>
+                        <h3>Computer Vision</h3>
+                        <p>Image processing, object detection, facial recognition, and applications.</p>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Projects Page -->
+    <section id="projects" class="page-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Projects</h2>
+                <p>Hands-on projects to apply your AI knowledge</p>
+            </div>
+            
+            <div class="project-level">
+                <h3>Beginner Projects</h3>
+                <div class="project-card">
+                    <h4>Spam Email Classifier</h4>
+                    <div class="project-meta">
+                        <span class="meta-item">Objective: Classify emails as spam or not spam</span>
+                        <span class="meta-item">Tools: Python, Scikit-learn, Pandas</span>
+                    </div>
+                    <p>Build a machine learning model that can accurately identify spam emails using natural language processing techniques.</p>
+                    <div class="flow-diagram">
+                        <p>Data Collection → Text Preprocessing → Feature Extraction → Model Training → Evaluation</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-level">
+                <h3>Intermediate Projects</h3>
+                <div class="project-card">
+                    <h4>Image Recognition System</h4>
+                    <div class="project-meta">
+                        <span class="meta-item">Objective: Classify images into categories</span>
+                        <span class="meta-item">Tools: TensorFlow, Keras, OpenCV</span>
+                    </div>
+                    <p>Create a convolutional neural network that can recognize and classify images from the CIFAR-10 dataset.</p>
+                    <div class="flow-diagram">
+                        <p>Load Dataset → Preprocess Images → Build CNN Model → Train Model → Test Accuracy</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-level">
+                <h3>Advanced Projects</h3>
+                <div class="project-card">
+                    <h4>Chatbot with Context Awareness</h4>
+                    <div class="project-meta">
+                        <span class="meta-item">Objective: Create a conversational AI assistant</span>
+                        <span class="meta-item">Tools: PyTorch, Transformers, Flask</span>
+                    </div>
+                    <p>Develop an advanced chatbot that maintains conversation context and provides intelligent responses using transformer models.</p>
+                    <div class="flow-diagram">
+                        <p>Data Preparation → Model Selection (BERT/GPT) → Fine-tuning → API Development → Deployment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Guide Page -->
+    <section id="career" class="page-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Career Guide</h2>
+                <p>Roadmap from student to AI professional</p>
+            </div>
+            
+            <div class="career-path">
+                <h3>Data Scientist</h3>
+                <p>Extract insights from data and build predictive models to solve business problems.</p>
+                <div class="skills-list">
+                    <span class="skill">Statistics</span>
+                    <span class="skill">Python/R</span>
+                    <span class="skill">Machine Learning</span>
+                    <span class="skill">Data Visualization</span>
+                    <span class="skill">SQL</span>
+                </div>
+                
+                <h4>Learning Roadmap:</h4>
+                <div class="roadmap">
+                    <div class="roadmap-step">
+                        <h5>Foundation (Months 1-3)</h5>
+                        <p>Learn Python, statistics, and basic data analysis with pandas.</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h5>Core Skills (Months 4-6)</h5>
+                        <p>Master machine learning algorithms and data visualization techniques.</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h5>Advanced Topics (Months 7-9)</h5>
+                        <p>Deep learning, big data tools, and end-to-end project implementation.</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <h5>Portfolio & Job Prep (Months 10-12)</h5>
+                        <p>Build portfolio projects, prepare for interviews, and apply for positions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="career-path">
+                <h3>Machine Learning Engineer</h3>
+                <p>Design, build, and deploy machine learning models at scale in production environments.</p>
+                <div class="skills-list">
+                    <span class="skill">ML Algorithms</span>
+                    <span class="skill">Software Engineering</span>
+                    <span class="skill">Cloud Platforms</span>
+                    <span class="skill">MLOps</span>
+                    <span class="skill">Deep Learning</span>
+                </div>
+                
+                <h4>Recommended Courses:</h4>
+                <ul>
+                    <li>Machine Learning Specialization (Coursera)</li>
+                    <li>Deep Learning Specialization (deeplearning.ai)</li>
+                    <li>ML Engineering for Production (MLOps) Specialization</li>
+                </ul>
+            </div>
+            
+            <div class="career-path">
+                <h3>AI Research Scientist</h3>
+                <p>Conduct original research to advance the field of artificial intelligence.</p>
+                <div class="skills-list">
+                    <span class="skill">Advanced Mathematics</span>
+                    <span class="skill">Research Methodology</span>
+                    <span class="skill">PyTorch/TensorFlow</span>
+                    <span class="skill">Academic Writing</span>
+                    <span class="skill">Latest AI Papers</span>
+                </div>
+                
+                <h4>Future Scope:</h4>
+                <p>AI research scientists are in high demand at tech companies, research labs, and academia. With the rapid growth of AI, opportunities exist in specialized areas like computer vision, NLP, robotics, and reinforcement learning.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for any questions about AI learning</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>contact@aiforstudents.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Virtual Learning Platform</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="ai-doubts">
+                <h3>Ask Your AI Doubts</h3>
+                <p>Have questions about AI concepts, projects, or career paths? Our AI mentor can help!</p>
+                <a href="#" class="btn" style="background: var(--white); color: var(--primary-blue); margin-top: 1rem;">Chat with AI Mentor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI for Students</h3>
+                    <p>Your comprehensive guide to understanding, applying, and mastering Artificial Intelligence. Designed for students of all levels.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="tools">Study Tools</a></li>
+                        <li><a href="#" data-page="notes">Notes</a></li>
+                        <li><a href="#" data-page="projects">AI Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="career">Career Guide</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AI for Students. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Page navigation
+        const navLinksAll = document.querySelectorAll('.nav-link');
+        const pageSections = document.querySelectorAll('.page-section');
+        
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            pageSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            navLinksAll.forEach(link => {
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Close mobile menu if open
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+        
+        // Add click event to all navigation links
+        navLinksAll.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Add click event to buttons with data-page attribute
+        document.querySelectorAll('[data-page]').forEach(button => {
+            if (button.tagName === 'A' || button.tagName === 'BUTTON') {
+                button.addEventListener('click', (e) => {
+                    const pageId = button.getAttribute('data-page');
+                    if (pageId) {
+                        e.preventDefault();
+                        showPage(pageId);
+                    }
+                });
+            }
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show a success message
+            alert(`Thank you, ${name}! Your message has been sent. We'll get back to you at ${email} soon.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if there's a hash in the URL
+            const hash = window.location.hash.substring(1);
+            const validPages = ['home', 'tools', 'notes', 'projects', 'career', 'contact'];
+            
+            if (validPages.includes(hash)) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        });
+    </script>
+</body>
+</html>
